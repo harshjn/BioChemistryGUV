@@ -1,19 +1,19 @@
-
 clear all
 close all
 
 
 % Base filename components
+
 baseFilename = 'Basler_acA3088-57um__24919761__20240629_152640066_';
 fileExtension = '.bmp';
 
 % Range of numbers in the filenames
 startNum = 316;
-endNum = 416;
+endNum = 2000;
 
 % Define the output directory
-outputDir_Polar = '../results/Polar1';
-outputDir_XY = '../results/XY1';
+outputDir_Polar = '../results/Polar2';
+outputDir_XY = '../results/XY2';
 
 % Create the output directory if it doesn't exist
 if ~exist(outputDir_Polar, 'dir')
@@ -79,7 +79,10 @@ for k = k:endNum
         % Create a grid of theta and r values
         theta = linspace(0, 2*pi, numTheta);
         extraRadii=40;
-        r = linspace(0, radii+extraRadii, numR+extraRadii);
+        %r = linspace(0, radii+extraRadii, numR+extraRadii);
+        TrueRadii=215+extraRadii;
+        r = linspace(0, TrueRadii, TrueRadii);
+       
         [Theta, R] = meshgrid(theta, r);
 
         % Convert polar coordinates to Cartesian coordinates
@@ -97,7 +100,7 @@ for k = k:endNum
         imwrite(polarImgUint8, outputFilename);
         
         % Define the bounding box for cropping
-        radius = radii+extraRadii;
+        radius = TrueRadii;
         xMin = max(1, round(centers(1) - radius));
         xMax = min(size(grayImg, 2), round(centers(1) + radius));
         yMin = max(1, round(centers(2) - radius));
