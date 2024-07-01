@@ -57,8 +57,8 @@ for k = k:endNum
     [centers, radii, metric] = imfindcircles(~adjustedImg, [minRadius maxRadius], 'Sensitivity', 0.99);
     %
     if size(centers,1)>1
-            centerMat(k-startNum+1,:) = centers(k-1);
-            radiiMat(k-startNum+1) = radii(k-1);
+            centerMat(k-startNum+1,:) = centerMat(k-1,:);
+            radiiMat(k-startNum+1) = radiiMat(k-1);
             
     else
             k
