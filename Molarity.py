@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
+Codes for calculating osmolarity
+
 Created on Wed Jul 24 15:44:16 2024
 
 @author: harshjain
