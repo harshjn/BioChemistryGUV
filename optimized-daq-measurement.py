@@ -11,7 +11,6 @@ Created on Tue Sep  3 17:25:26 2024
 
 @author: Leica-Admin
 """
-
 import nidaqmx
 from nidaqmx.system import System
 from datetime import datetime,timedelta
@@ -26,6 +25,9 @@ system = System.local()
 print("Available NI-DAQmx devices:")
 for device in system.devices:
     print(f"Device Name: {device.name}, Product Type: {device.product_type}")
+
+filename='E:/Harsh/Harsh/April25/today/analog_data1.txt'
+
 
 #%%
 import nidaqmx
@@ -79,8 +81,8 @@ channel_name = f"{device_name}/ai0"
 samples_to_read = 1000  # Number of samples you want to read
 sample_rate = 10000     # Samples per second
 
-with open('test_harsh/8Nov/analog_data2.txt', 'a') as file:
-    try:
+with open(filename, 'a') as file:
+    try: 
         while True:
             start_time = datetime.now()
             timestart = time.time()
@@ -116,7 +118,7 @@ with open('test_harsh/8Nov/analog_data2.txt', 'a') as file:
                     file.flush()  # Ensure data is written to file
                     
                     
-            with open('test_harsh/8Nov/DisplayVoltsData.txt', 'w') as file2:
+            with open('E:/Harsh/Harsh/April25/today/DisplayVoltsData.txt', 'w') as file2:
                 meanVal = np.mean(values);
                 stdVal = np.std(values);
                 file2.write(f"{meanVal}\n{stdVal}")
